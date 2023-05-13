@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { isMentor } from '../../helpers/user';
-import { useAuth } from '../../context/authContext/AuthContext';
+import { useAuth0 } from '@auth0/auth0-react';
 import EditProfile from '../MemberArea/EditProfile';
 import UserContext from '../../context/userContext/UserContext';
 import { links } from '../../config/constants';
@@ -9,7 +9,7 @@ import { useApi } from '../../context/apiContext/ApiContext';
 
 function Navigation({ isAuthenticated, onOpenModal }) {
   const { currentUser } = useContext(UserContext);
-  const auth = useAuth();
+  const auth = useAuth0();
   const api = useApi();
 
   const openProfile = (e) => {
@@ -29,10 +29,7 @@ function Navigation({ isAuthenticated, onOpenModal }) {
       );
     }
     return (
-      <Link
-        href="#"
-        onClick={(e) => e.preventDefault() || auth.login(null, true)}
-      >
+      <Link href="#" onClick={(e) => e.preventDefault() || auth.login}>
         Become a Mentor
       </Link>
     );
@@ -41,7 +38,7 @@ function Navigation({ isAuthenticated, onOpenModal }) {
   return (
     <Nav id="menu">
       <List>
-        <Link href="https://codingcoach.io/">About</Link>
+        <Link href="/about">About</Link>
         <Link href={links.MENTORSHIP_GUIDELINES} target="_blank">
           Mentorship Guidelines
         </Link>

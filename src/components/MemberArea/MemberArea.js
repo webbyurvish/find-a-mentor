@@ -5,7 +5,7 @@ import Link from '../Link/Link';
 
 import { getAvatarUrl } from '../../helpers/avatar';
 import { useUser } from '../../context/userContext/UserContext';
-import { useAuth } from '../../context/authContext/AuthContext';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useApi } from '../../context/apiContext/ApiContext';
 import LoginNavigation from '../LoginNavigation/LoginNavigation';
 import EditProfile from './EditProfile';
@@ -18,7 +18,7 @@ function MemberArea({ onOpenModal }) {
   const [isMemberMenuOpen, setIsMemberMenuOpen] = useState(false);
   const { currentUser, isMentor, isAdmin, isAuthenticated, logout } = useUser();
   const api = useApi();
-  const auth = useAuth();
+  const auth = useAuth0();
   const openBecomeMentor = useCallback(
     () => onOpenModal('Edit Your Profile', <EditProfile api={api} />),
     [onOpenModal, api]
@@ -34,9 +34,9 @@ function MemberArea({ onOpenModal }) {
     if (!currentUser) {
       return;
     }
-    auth.onMentorRegistered(() => {
-      openBecomeMentor();
-    });
+    // auth.onMentorRegistered(() => {
+    //   openBecomeMentor();
+    // });
   }, [auth, currentUser, openBecomeMentor]);
 
   const onClickLogout = () => {

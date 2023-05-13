@@ -16,8 +16,8 @@ function addSource(source) {
   }
 }
 
-addSource(process.env.NEXT_PUBLIC_EXPERIMENTS);
-addSource(new URLSearchParams(window.location.search).get('experiments'));
+// addSource(process.env.NEXT_PUBLIC_EXPERIMENTS);
+// addSource(new URLSearchParams(window.location.search).get('experiments'));
 
 if (Object.keys(experiments).length) {
   localStorage.setItem('experiments', JSON.stringify(experiments));

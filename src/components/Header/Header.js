@@ -8,8 +8,8 @@ import Logo from '../Logo';
 import Title from '../SiteTitle';
 import Navigation from '../Navigation/Navigation';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
-import { AuthContext } from '../../context/authContext/AuthContext';
 import { useDeviceType } from '../../hooks/useDeviceType';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Header() {
   const [modal, setModal] = useState({
@@ -19,8 +19,8 @@ function Header() {
   });
   const [isOpen, setIsOpen] = useState(false);
   const { isDesktop } = useDeviceType();
-  const auth = useContext(AuthContext);
-  const authenticated = auth.isAuthenticated();
+  const auth = useAuth0();
+  const authenticated = auth.isAuthenticated;
 
   const handleModal = ({ title, content, onClose }) => {
     setModal({ title, content, onClose });

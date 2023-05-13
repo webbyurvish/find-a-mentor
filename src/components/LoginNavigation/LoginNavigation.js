@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { useAuth } from '../../context/authContext/AuthContext';
+import { useAuth0 } from '@auth0/auth0-react';
 import { desktop, mobile } from '../../Me/styles/shared/devices';
 
 function LoginNavigation() {
-  const auth = useAuth();
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <LoginArea>
-      <LoginAreaItem onClick={() => auth.login()}>
+      <LoginAreaItem onClick={() => loginWithRedirect()}>
         Login / Register
       </LoginAreaItem>
     </LoginArea>
